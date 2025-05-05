@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./static/css/nav.css" />
     <script defer src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script defer src="./static/js/main.js"></script>
+    <script defer src="./static/js/debug.js"></script>
     <title>hotpot</title>
 
 </head>
@@ -20,6 +21,7 @@
     <?php require_once("./MVC/views/cards.html"); ?>
 
     <?php require_once("./MVC/views/common/footer.html"); ?>
+
 </body>
 
 </html>

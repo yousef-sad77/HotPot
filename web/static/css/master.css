@@ -30,9 +30,10 @@ main {
     0 1px 0 rgba(0, 0, 0, 0.05) inset;
 }
 
-[data-bs-theme="light"] svg.nav-icon,
+/* data-bs-theme="" might cause a bug too afraid to remove it */
+[data-bs-theme="dark"] svg.nav-icon,
 [data-bs-theme=""] svg.nav-icon {
-  fill: #2b3035;
+  fill: #e3e3e3;
 }
 
 @font-face {

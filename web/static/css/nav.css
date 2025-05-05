@@ -15,11 +15,9 @@ img.nav-icon,
 svg.nav-icon {
   width: 30px;
   height: 30px;
-  fill: #e3e3e3;
+  fill: #2b3035;
 }
-.nav-link.active .nav-icon path {
-  fill: #007bff;
-}
+
 .signed-in,
 .hide-profile {
   display: none;
