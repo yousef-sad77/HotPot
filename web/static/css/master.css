@@ -37,14 +37,14 @@ main {
 
 @font-face {
   font-family: "Fredoka";
-  src: url("../assets/fonts/Fredoka-VariableFont.woff2") format("woff2");
+  src: url("../../assets/fonts/Fredoka-VariableFont.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "PatrickHand";
-  src: url("../assets/fonts/PatrickHand-Regular.woff2") format("woff2");
+  src: url("../../assets/fonts/PatrickHand-Regular.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
 }
