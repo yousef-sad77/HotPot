@@ -1,0 +1,39 @@
+.logo {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+}
+.logo-text {
+  font-size: 2.4rem;
+  font-family: "PatrickHand", sans-serif;
+}
+.logo-icon {
+  height: auto;
+  width: 4rem;
+}
+img.nav-icon,
+svg.nav-icon {
+  width: 30px;
+  height: 30px;
+  fill: #e3e3e3;
+}
+.nav-link.active .nav-icon path {
+  fill: #007bff;
+}
+.signed-in,
+.hide-profile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .logo-text {
+    font-size: 1.6rem;
+  }
+  .navbar-brand {
+    margin-right: 0;
+  }
+  .left-nav > * {
+    width: fit-content;
+    margin-bottom: 1rem;
+  }
+}

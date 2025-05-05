@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+}
+
+:root {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.6rem;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  margin-top: 10px;
+  margin-inline: 10px;
+  height: 300vh;
+}
+
+[data-bs-theme="dark"] nav {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6),
+    0 1px 0 rgba(255, 255, 255, 0.05) inset;
+}
+
+[data-bs-theme="light"] nav,
+[data-bs-theme=""] nav {
+  box-shadow: 0 4px 4px rgba(230, 230, 230, 0.6),
+    0 1px 0 rgba(0, 0, 0, 0.05) inset;
+}
+
+[data-bs-theme="light"] svg.nav-icon,
+[data-bs-theme=""] svg.nav-icon {
+  fill: #2b3035;
+}
+
+@font-face {
+  font-family: "Fredoka";
+  src: url("../assets/fonts/Fredoka-VariableFont.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "PatrickHand";
+  src: url("../assets/fonts/PatrickHand-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
