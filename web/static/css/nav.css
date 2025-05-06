@@ -4,12 +4,15 @@
   font-weight: 600;
 }
 .logo-text {
-  font-size: 2.4rem;
+  font-size: 1.2rem;
   font-family: "PatrickHand", sans-serif;
 }
 .logo-icon {
   height: auto;
-  width: 4rem;
+  width: auto;
+}
+.logo-link{
+  height: 40px;
 }
 img.nav-icon,
 svg.nav-icon {
@@ -22,6 +25,19 @@ svg.nav-icon {
 .hide-profile {
   display: none;
 }
+
+[data-bs-theme="dark"] nav {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6),
+    0 1px 0 rgba(255, 255, 255, 0.05) inset;
+}
+nav {
+  box-shadow: 0 4px 4px rgba(230, 230, 230, 0.6),
+    0 1px 0 rgba(0, 0, 0, 0.05) inset;
+}
+[data-bs-theme="dark"] svg.nav-icon {
+  fill: #e3e3e3;
+}
+
 
 @media (max-width: 768px) {
   .logo-text {

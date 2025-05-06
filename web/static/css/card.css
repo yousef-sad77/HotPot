@@ -1,0 +1,8 @@
+[data-bs-theme="dark"] .card {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6),
+    0 1px 0 rgba(255, 255, 255, 0.05) inset;
+}
+.card {
+  box-shadow: 0 4px 4px rgba(230, 230, 230, 0.6),
+    0 1px 0 rgba(0, 0, 0, 0.05) inset;
+}

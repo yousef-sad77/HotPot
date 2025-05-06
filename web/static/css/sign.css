@@ -25,14 +25,20 @@ body {
   margin-bottom: 1.5rem;
 }
 
-.auth-form,
-.remember {
+.auth-form {
   display: none;
 }
-
-.auth-form.active,
-.remember.active {
+.remember{
+  visibility: hidden;
+  opacity: 0;
+}
+.auth-form.active{
   display: block;
+}
+.remember.active {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
 }
 
 input:valid {
