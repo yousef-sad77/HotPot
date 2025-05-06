@@ -1,4 +1,12 @@
 
+const hot_reload_style = `
+<style>
+    #__bs_notify__{
+        background-color: rgba(70, 69, 69, 0.34) !important;
+        color: rgba(153, 147, 147, 0.51) !important;
+    }
+</style>`
+
 const html_debug_elements = `<div id="debug-overlay">
     <div class="panel" id="breakpoint-label">Breakpoint: ?</div>
     <button id="toggle-outline">Toggle Outline</button>
@@ -72,6 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
     { name: 'xs', min: 0 },
   ];
 
+  document.body.insertAdjacentHTML('afterbegin', hot_reload_style);
   document.body.insertAdjacentHTML('beforeend', html_debug_elements + css_debug_style);
 
   const overlay = document.getElementById('debug-overlay');
