@@ -1,0 +1,48 @@
+:root {
+  --valid-color: #198754;
+  --invalid-color: #dc3545;
+}
+
+body {
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.auth-container {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.auth-container h2 {
+  margin-bottom: 1.5rem;
+}
+
+.auth-form,
+.remember {
+  display: none;
+}
+
+.auth-form.active,
+.remember.active {
+  display: block;
+}
+
+input:valid {
+  border-color: var(--valid-color);
+}
+
+input:invalid:focus {
+  border-color: var(--invalid-color);
+}
+
+.anti-wiggle{
+    height: 5rem;
+}
