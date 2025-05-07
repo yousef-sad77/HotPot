@@ -1,4 +1,4 @@
-<div class="container my-5">
+<div class="dash-con container mt-5 mb-auto ">
     <h2 class="mb-4 text-center">welcome back admin 🌸</h2>
 
     <div class="card shadow col">
@@ -13,6 +13,7 @@
                         <th>#</th>
                         <th>Meal</th>
                         <th>Price ($)</th>
+                        <th>amount</th>
                         <th>Image</th>
                         <th>Actions</th>
                     </tr>
@@ -23,12 +24,13 @@
                         <td>1</td>
                         <td contenteditable="true">Burger</td>
                         <td contenteditable="true">9.99</td>
+                        <td contenteditable="true">15</td>
                         <td>
-                            <img src="https://via.placeholder.com/50" class="rounded" alt="Meal" />
+                            <img src="../../assets/images/chorizo-mozarella-gnocchi-bake-cropped.jpg" style="width:50px;" class="rounded" alt="Meal" />
                         </td>
                         <td>
-                            <button class="btn btn-sm btn-warning">Update</button>
-                            <button class="btn btn-sm btn-danger">Delete</button>
+                            <button class="btn btn-sm btn-warning" onclick="">Update</button>
+                            <button class="btn btn-sm btn-danger" onclick="">Delete</button>
                         </td>
                     </tr>
                 </tbody>
@@ -36,26 +38,3 @@
         </div>
     </div>
 </div>
-<!-- Script to handle row insertion -->
-<script>
-    let mealId = 2; // Starting index for new rows
-
-    document.getElementById('addMealBtn').addEventListener('click', function () {
-        const table = document.getElementById('mealTable');
-
-        const row = table.insertRow();
-        row.innerHTML = `
-        <td>${mealId++}</td>
-        <td contenteditable="true"><input type="text" class="form-control form-control-sm" placeholder="Meal Name" /></td>
-        <td contenteditable="true"><input type="number" class="form-control form-control-sm" placeholder="Price" /></td>
-        <td><input type="url" class="form-control form-control-sm" placeholder="Image URL" /></td>
-        <td>
-          <button class="btn btn-sm btn-warning">Save</button>
-          <button class="btn btn-sm btn-danger" onclick="this.closest('tr').remove()">Delete</button>
-        </td>
-      `;
-
-        // Autofocus the Meal Name field
-        row.querySelector('input[type="text"]').focus();
-    });
-</script>

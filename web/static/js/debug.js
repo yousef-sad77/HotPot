@@ -71,37 +71,39 @@ const css_debug_style = `<style>
 
 
 document.addEventListener('DOMContentLoaded', function () {
-  const breakpoints = [
-    { name: 'xxl', min: 1400 },
-    { name: 'xl', min: 1200 },
-    { name: 'lg', min: 992 },
-    { name: 'md', min: 768 },
-    { name: 'sm', min: 576 },
-    { name: 'xs', min: 0 },
-  ];
+    document.body.insertAdjacentHTML('afterbegin', hot_reload_style);
+    function visual_debug() {
+        const breakpoints = [
+            { name: 'xxl', min: 1400 },
+            { name: 'xl', min: 1200 },
+            { name: 'lg', min: 992 },
+            { name: 'md', min: 768 },
+            { name: 'sm', min: 576 },
+            { name: 'xs', min: 0 },
+        ];
 
-  document.body.insertAdjacentHTML('afterbegin', hot_reload_style);
-  document.body.insertAdjacentHTML('beforeend', html_debug_elements + css_debug_style);
+        document.body.insertAdjacentHTML('beforeend', html_debug_elements + css_debug_style);
 
-  const overlay = document.getElementById('debug-overlay');
-  const label = document.getElementById('breakpoint-label');
-  const toggleOutlineBtn = document.getElementById('toggle-outline');
-  const togglePositionBtn = document.getElementById('toggle-position');
+        const overlay = document.getElementById('debug-overlay');
+        const label = document.getElementById('breakpoint-label');
+        const toggleOutlineBtn = document.getElementById('toggle-outline');
+        const togglePositionBtn = document.getElementById('toggle-position');
 
-  function updateBreakpoint() {
-    const width = window.innerWidth;
-    const current = breakpoints.find(bp => width >= bp.min);
-    label.textContent = `Breakpoint: ${current.name} (${width}px)`;
-  }
+        function updateBreakpoint() {
+            const width = window.innerWidth;
+            const current = breakpoints.find(bp => width >= bp.min);
+            label.textContent = `Breakpoint: ${current.name} (${width}px)`;
+        }
 
-  toggleOutlineBtn.addEventListener('click', () => {
-    document.body.classList.toggle('debug-outline');
-  });
+        toggleOutlineBtn.addEventListener('click', () => {
+            document.body.classList.toggle('debug-outline');
+        });
 
-  togglePositionBtn.addEventListener('click', () => {
-    overlay.classList.toggle('top');
-  });
+        togglePositionBtn.addEventListener('click', () => {
+            overlay.classList.toggle('top');
+        });
 
-  window.addEventListener('resize', updateBreakpoint);
-  updateBreakpoint();
+        window.addEventListener('resize', updateBreakpoint);
+        updateBreakpoint();
+    }
 });
