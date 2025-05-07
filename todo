@@ -1,9 +1,22 @@
-nav need to be text centered on sm and xm 
-in cart the element to the right of image should be columned
-the cart icon should take to the cart page
-space out the carts food name from the order counter
-fix top rounded image in cards
-fix the footer logo text size
-check on tab indexing
-remove comments
-footer should be pushed down so the user have to scroll 100vh + the whole footer height for all pages
+- nav need to be text centered on sm and xm 
+- in cart the element to the right of image should be columned
+- the cart icon should take to the cart page
+- space out the carts food name from the order counter
+- fix top rounded image in cards
+- fix the footer logo text size
+- check on tab indexing
+- remove comments
+- footer should be pushed down so the user have to scroll 100vh + the whole footer height for all pages
+- sign title height needs to be lowered 
+- sign switch needs to be lowered
+- add back arrow top left on the page to get back home
+- adding payment page
+- adding success page
+- maybe special nav for dashboard
+- renaming cards to home
+- adding logout button
+- adding beside add to cart button anther button to read more on the meal which leads to product page
+- adding product page in which it describe a farther more on the meal and what comes with it and a few variation of the meal that you can choose
+- adding user table in the dashboard
+- adding validation script and review instruction on email/password validation
+- toggle view mode dark light
