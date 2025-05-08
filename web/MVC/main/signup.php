@@ -4,7 +4,7 @@ require_once 'config_session.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username']) ?? '';
     $email = trim($_POST['email']) ?? '';
-    $password = trim($_POST['password']) ?? '';
+    $pwd = trim($_POST['password']) ?? '';
     // confirm password
 
     try {
@@ -18,35 +18,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (any_error($username, $pwd, $email)) {
 
+        die();
     } else  {
-        echo "<h3 style='color:green ;'>Form Submition Successfuly</h3>";
-
-        $_SESSION['form_data']["username"]["data"] = $username;
-        $_SESSION['form_data']["email"]["data"] = $email;
-        $_SESSION['form_data']["password"]["data"] = $password;
+        sign_up($username, $pwd, $email);
         header('Location: success.php');
-        exit();
     }
     //todo
-    $_SESSION['form_data'];
+    $_SESSION['form_data']['signup'];
 
-    // Hash the password
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    // Insert new user
-    $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $username, $email, $hashedPassword);
 
-    if ($stmt->execute()) {
-        echo "Registration successful!";
-        // Optionally auto-login:
-        // $_SESSION['user_id'] = $stmt->insert_id;
-    } else {
-        echo "Error: " . $stmt->error;
-    }
 
-    $stmt->close();
-    $conn->close();
 } else {
     header("location: ../index.php");
     die("Invalid request method.");

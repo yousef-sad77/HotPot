@@ -42,3 +42,20 @@ function get_email(mysqli $conn, string $email)
         return [0 => false, 1 => $row['email']];
     }
 }
+function add_user(mysqli $conn, string $username,string $hashedPassword,string $email)
+{
+    // Prepare SQL    // Insert new user
+    $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $username, $hashedPassword, $email);
+
+    if ($stmt->execute()) {
+        echo "Registration successful!";
+        // Optionally auto-login:
+        // $_SESSION['user_id'] = $stmt->insert_id;
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+    $stmt->close();
+    $conn->close();
+}
