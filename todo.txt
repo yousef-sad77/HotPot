@@ -17,5 +17,5 @@
 - adding payment page
 - animate height in sign page
 - confirm password
-- loging $row in file signup.php using:
+- logging $row in file signup.php using:
     cd .\web\MVC\module\ && php signup.php

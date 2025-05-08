@@ -16,10 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Query failed:" . $e->getMessage());
     }
 
-    if (any_error()) {
-        
-    }
-    if (!any_error()) {
+    if (any_error($username, $pwd, $email)) {
+
+    } else  {
         echo "<h3 style='color:green ;'>Form Submition Successfuly</h3>";
 
         $_SESSION['form_data']["username"]["data"] = $username;

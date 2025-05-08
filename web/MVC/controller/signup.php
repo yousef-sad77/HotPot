@@ -128,16 +128,18 @@ function is_username_taken(string $username)
     }
 }
 
-function any_error()
+function any_error(string $username,string $pwd,string $email)
 {
-    $field_error = is_filled($_SESSION['form_data']['username']['error']) || is_filled($_SESSION['form_data']['email']['error']) || is_filled($_SESSION['form_data']['password']['error']);
-    $global_error = is_filled($_SESSION['form_data']['global_error']);
-    $password_detailed_error = is_filled($_SESSION['form_data']['password']['detailed_error']);
-    if ($global_error || $password_detailed_error || $field_error) {
-        return true;
-    } else {
-        return false;
-    }
+    // $field_error = is_filled($_SESSION['form_data']['username']['error']) || is_filled($_SESSION['form_data']['email']['error']) || is_filled($_SESSION['form_data']['password']['error']);
+    // $global_error = is_filled($_SESSION['form_data']['global_error']);
+    // $password_detailed_error = is_filled($_SESSION['form_data']['password']['detailed_error']);
+    // if ($global_error || $password_detailed_error || $field_error) {
+    //     return true;
+    // } else {
+    //     return false;
+    // }
+
+    return is_input_empty($username, $pwd, $email) || is_password_strong($pwd) || is_password_length_valid($pwd) || is_email_valid($email) || is_email_registered($email) || is_username_taken($username);
 }
 
 // global does not get read form local

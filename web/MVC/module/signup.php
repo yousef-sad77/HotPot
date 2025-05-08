@@ -2,7 +2,7 @@
 
 declare(strict_type=1);
 
-function get_username(object $conn, string $username)
+function get_username(mysqli $conn, string $username)
 {
     // Prepare SQL statement
     $stmt = $conn->prepare("SELECT username FROM users WHERE username = ?");
@@ -21,7 +21,7 @@ function get_username(object $conn, string $username)
         return [0 => false, 1 => ""];
     }
 }
-function get_email(object $conn, string $email)
+function get_email(mysqli $conn, string $email)
 {
     // Prepare SQL statement
     $stmt = $conn->prepare("SELECT username FROM users WHERE email = ?");
