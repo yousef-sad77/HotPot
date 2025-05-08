@@ -10,13 +10,8 @@
 - sign title height needs to be lowered 
 - sign switch needs to be lowered
 - add back arrow top left on the page to get back home
-- adding payment page
-- adding success page
-- maybe special nav for dashboard
-- renaming cards to home
-- adding logout button
-- adding beside add to cart button anther button to read more on the meal which leads to product page
-- adding product page in which it describe a farther more on the meal and what comes with it and a few variation of the meal that you can choose
-- adding user table in the dashboard
 - adding validation script and review instruction on email/password validation
+- maybe special nav for dashboard
 - toggle view mode dark light
+- double check path access
+- adding payment page

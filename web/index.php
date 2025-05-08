@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="./static/css/footer.css" />
     <link rel="stylesheet" href="./static/css/dashboard.css" />
     <script defer src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script defer src="./static/js/nav.js"></script>
     <script defer src="./static/js/main.js"></script>
     <script defer src="./static/js/debug.js"></script>
     <script defer src="./static/js/dashboard.js"></script>
