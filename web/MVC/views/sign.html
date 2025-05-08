@@ -16,11 +16,11 @@
 </head>
 
 <body>
-  
+
   <div class="auth-container bg-body-tertiary">
-    
+
     <div class="anti-wiggle d-flex justify-content-center">
-      <h2 class="me-1" >Sign</h2>
+      <h2 class="me-1">Sign</h2>
       <label class="switch">
         <input type="checkbox" id="toggle-btn">
         <span class="slider">
@@ -32,32 +32,28 @@
       </label>
     </div>
 
-    <form class="px-4 pb-2 auth-form active" id="signup-form">
+    <form class="px-4 pb-2 auth-form active" id="signup-form" action="include/signup.php" method="post">
       <div class="mb-3">
         <label for="username-1" class="form-label">user name</label>
-        <input type="username" class="form-control" id="username-1" placeholder="yousef">
+        <input type="username" name="username" class="form-control" id="username-1" placeholder="yousef">
       </div>
       <div class="mb-3">
         <label for="email-in-1" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="email-in-1" placeholder="email@example.com">
+        <input type="email" name="email" class="form-control" id="email-in-1" placeholder="email@example.com">
       </div>
       <div class="mb-3">
         <label for="password-in-1" class="form-label">Password</label>
-        <input type="password" class="form-control" id="password-in-1" placeholder="password">
+        <input type="password" name="password" class="form-control" id="password-in-1" placeholder="new password">
       </div>
     </form>
-    <form class="px-4 pb-2 auth-form" id="signin-form">
-      <div class="mb-3">
-        <label for="username-2" class="form-label">user name</label>
-        <input type="username" class="form-control" id="username-2" placeholder="ahmad">
-      </div>
+    <form class="px-4 pb-2 auth-form" id="signin-form" action="include/signin.php" method="post">
       <div class="mb-3">
         <label for="email-in-2" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="email-in-2" placeholder="email@example.com">
+        <input type="email" name="email" class="form-control" id="email-in-2" placeholder="email@example.com">
       </div>
       <div class="mb-3">
         <label for="password-in-2" class="form-label">Password</label>
-        <input type="password" class="form-control" id="password-in-2" placeholder="new password">
+        <input type="password" name="password" class="form-control" id="password-in-2" placeholder="password">
       </div>
     </form>
     <div class="control px-4 pb-3">

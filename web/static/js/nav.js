@@ -1,6 +1,6 @@
 
 document.addEventListener('DOMContentLoaded', function () {
-    isSignedIn = true;
+    isSignedIn = false;
     if (isSignedIn) {
         const sign = document.getElementById("sign");
         const profile = document.getElementById("profile");
