@@ -19,9 +19,18 @@
     <title>hotpot</title>
 
 </head>
+<?php
+require_once("MVC/controller/config_session.php");
+require_once('MVC/main/verify_session.php');
+?>
 
-<body>
-    <?php require_once("./MVC/views/common/nav.html"); ?>
+<body data-signed-in="<?php echo isset($_SESSION['user_id']) ? 'true' : 'false'; ?>">
+    <?php
+    echo '<pre>';
+    var_dump($_SESSION);
+    echo '</pre>';
+    ?>
+    <?php require_once("./MVC/views/common/nav.php"); ?>
 
     <?php require_once("./MVC/views/dashboard.html"); ?>
 

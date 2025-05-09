@@ -1,11 +1,11 @@
 <?php
 $servername = "localhost"; 
-$username = "your_username";
-$password = "your_password";
-$dbname = "your_database";
+$db_username = "root";
+$password = "";
+$dbname = "hotpot_db";
 
 $connected = false;
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $db_username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {

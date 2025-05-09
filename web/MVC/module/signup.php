@@ -1,61 +1,101 @@
 <?php
 
-declare(strict_type=1);
+declare(strict_types=1);
 
 function get_username(mysqli $conn, string $username)
 {
-    // Prepare SQL statement
-    $stmt = $conn->prepare("SELECT username FROM users WHERE username = ?");
+    $stmt = $conn->prepare("SELECT COUNT(*) FROM users WHERE username = ?");
     if (!$stmt) {
         die("Prepare failed: " . $conn->error);
     }
     $stmt->bind_param("s", $username);
     $stmt->execute();
-    $result = $stmt->get_result();
-    $row = $result->fetch_assoc();
-    // cd .\web\MVC\module\ && php signup.php 
-    echo $row;
-    if (!empty($row)) {
-        return [0 => true, 1 => $row['username']];
-    } else {
-        return [0 => false, 1 => ""];
+    $stmt->bind_result($count);
+    $stmt->fetch();
+    $stmt->close();
+
+    if ($count > 0) {
+        return true;
     }
+    return false;
 }
 function get_email(mysqli $conn, string $email)
 {
-    // Prepare SQL statement
-    $stmt = $conn->prepare("SELECT username FROM users WHERE email = ?");
+    $stmt = $conn->prepare("SELECT COUNT(*) FROM users WHERE email = ?");
     if (!$stmt) {
         die("Prepare failed: " . $conn->error);
     }
     $stmt->bind_param("s", $email);
     $stmt->execute();
-    $result = $stmt->get_result();
-    $row = $result->fetch_assoc();
-    // cd .\web\MVC\module\ && php signup.php 
-    // todo 
-    echo $row;
-    if (!empty($row)) {
-        return [0 => true, 1 => $row['email']];
-    } else {
-        $row['email'] = '';
-        return [0 => false, 1 => $row['email']];
+    $stmt->bind_result($count);
+    $stmt->fetch();
+    $stmt->close();
+
+    if ($count > 0) {
+        return true;
     }
+    return false;
 }
-function add_user(mysqli $conn, string $username,string $hashedPassword,string $email)
+
+function create_user(mysqli $conn, string $username, string $pwd, string $email)
 {
-    // Prepare SQL    // Insert new user
-    $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
+    // Check if username already exists
+
+    $option = [
+        'cost' => 12,
+    ];
+    $hashedPassword = password_hash($pwd, PASSWORD_BCRYPT, $option);
+
+    // Proceed with the insertion if the username is unique
+    $stmt = $conn->prepare("INSERT INTO users (uuid, username, pwd, email) VALUES (UUID(), ?, ?, ?)");
+    if (!$stmt) {
+        die("Prepare failed: " . $conn->error);
+    }
     $stmt->bind_param("sss", $username, $hashedPassword, $email);
 
     if ($stmt->execute()) {
-        echo "Registration successful!";
-        // Optionally auto-login:
-        // $_SESSION['user_id'] = $stmt->insert_id;
+        return true; // User successfully created
     } else {
-        echo "Error: " . $stmt->error;
+        return false;
+    }
+}
+
+function get_uuid(mysqli $conn, string $username): ?string
+{
+    // Prepare SQL query to retrieve UUID based on the username
+    $stmt = $conn->prepare("SELECT uuid FROM users WHERE username = ?");
+
+    // Check if prepare statement was successful
+    if (!$stmt) {
+        die("Prepare failed: " . $conn->error);
+    }
+    $stmt->bind_param("s", $username);
+
+    // Execute the statement
+    $stmt->execute();
+    $stmt->bind_result($uuid);
+    $stmt->fetch();
+    $stmt->close();
+    return $uuid ? $uuid : null;
+}
+
+function check_for_user_info(mysqli $conn, string $username, string $email): bool
+{
+    $stmt = $conn->prepare("SELECT COUNT(*) FROM users WHERE username = ? AND uuid = ? AND email = ?");
+    if (!$stmt) {
+        die("Prepare failed: " . $conn->error);
     }
 
+    $stmt->bind_param("sss", $username, $uuid, $email);
+    $stmt->execute();
+    $stmt->bind_result($count);
+    $stmt->fetch();
     $stmt->close();
-    $conn->close();
+    if ($count === 1) {
+        return true;
+    } else {
+        return false;
+    }
+
 }
+

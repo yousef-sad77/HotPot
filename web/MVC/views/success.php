@@ -4,14 +4,15 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign-In Success</title>
+    <title>SignUp Success</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <style>
         body {
             height: 100vh;
             background: linear-gradient(135deg, #8bf10d, #95f16a);
         }
-        .check-done{
+
+        .check-done {
             width: 50px;
         }
     </style>
@@ -30,10 +31,16 @@
             </div>
             <h4 class="card-title mb-3">Signed in Successfully!</h4>
             <p class="card-text text-muted">Welcome back! You're now signed in to your account.</p>
-            <a href="" class="btn btn-success rounded-pill mt-3">Go Back</a>
+            <a href="../../index.php" class="btn btn-success rounded-pill mt-3">Go Back</a>
         </div>
     </div>
 
+    <?php
+    require_once('../controller/config_session.php');
+    unset($_SESSION['form_data']['signup']);
+    unset($_SESSION['form_data']);
+
+    ?>
     <!-- Bootstrap Icons (optional) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </body>

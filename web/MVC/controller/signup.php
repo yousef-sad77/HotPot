@@ -1,51 +1,24 @@
 <?php
 
-declare(strict_type=1);
+declare(strict_types=1);
 
 require_once("../module/db_connect.php");
+require_once("../module/signup.php");
 // double check:
 if (!$connected) {
     echo "database are not connected";
 }
 //
-require_once("./config_session.php");
-$_SESSION['form_data']['signup'];
+require_once("config_session.php");
 
-function all(array $items, callable $callback): bool
-{
-    foreach ($items as $item) {
-        if (!$callback($item)) {
-            return false;
-        }
-    }
-    return true;
-}
-function any(array $items, callable $callback): bool
-{
-    foreach ($items as $item) {
-        if ($callback($item)) {
-            return true;
-        }
-    }
-    return false;
-}
-
-function is_empty($x)
-{
-    return empty($x);
-}
-function is_filled($x)
-{
-    return !empty($x);
-}
+require_once("utility.php");
 function is_input_empty(string $username, string $pwd, string $email)
 {
     $args = func_get_args();
     if (all($args, 'is_filled')) /* all are filled => false. other wise => continue */ {
-        $_SESSION['form_data']['signup']['global_error'][] = "";
+        unset($_SESSION['form_data']['signup']['global_error']);
         return false;
     } elseif (any($args, 'is_filled')) /* only(one or two empty || one or two filled) => true. other wise => false */ {
-        $one_or_more = 0;
         if (is_empty($username)) {
             $_SESSION['form_data']['signup']['username']['error'] = "Username is required";
         }
@@ -64,7 +37,7 @@ function is_input_empty(string $username, string $pwd, string $email)
         //     $errors['confirm_password'] = "Passwords do not match";
         // }
     } elseif (all($args, 'is_empty')) /* all are empty => true. other wise => false*/ {
-        $_SESSION['form_data']['signup']['global_error'][] = "Please fill in all fields with valid data.";
+        $_SESSION['form_data']['signup']['global_error'] = "Please fill in all fields with valid data.";
         return true;
     } else {
         return false;
@@ -73,34 +46,51 @@ function is_input_empty(string $username, string $pwd, string $email)
 
 function is_password_strong(string $pwd)
 {
-    if (preg_match_all('/[A-Z]/', $pwd) > 2) {
-        $_SESSION['form_data']['signup']['password']['detailed_error'][] = "at least 3 capital";
-    }
-    if (preg_match_all('/[a-z]/', $pwd) > 2) {
-        $_SESSION['form_data']['signup']['password']['detailed_error'][] = "at least 3 lower";
-    }
-    if (preg_match_all('/[0-9]/', $pwd) > 2) {
-        $_SESSION['form_data']['signup']['password']['detailed_error'][] = "at least 3 number";
+    $is_strong = true;
+
+    // Check if the password has at least 3 uppercase letters
+    if (preg_match_all('/[A-Z]/', $pwd) < 2) {
+        $_SESSION['form_data']['signup']['password']['detailed_error'][] = "at least 3 uppercase letters required";
+        $is_strong = false;
     }
 
+    // Check if the password has at least 3 lowercase letters
+    if (preg_match_all('/[a-z]/', $pwd) < 2) {
+        $_SESSION['form_data']['signup']['password']['detailed_error'][] = "at least 3 lowercase letters required";
+        $is_strong = false;
+    }
+
+    // Check if the password has at least 3 numbers
+    if (preg_match_all('/[0-9]/', $pwd) < 2) {
+        $_SESSION['form_data']['signup']['password']['detailed_error'][] = "at least 3 numbers required";
+        $is_strong = false;
+    }
+
+    return $is_strong;
 }
+
 function is_password_length_valid(string $pwd)
 {
     if (strlen($pwd) < 9) {
         $_SESSION['form_data']['signup']['password']['detailed_error'][] = "Password must be at least 10 characters long, password way too short";
-    } elseif (strlen($pwd) < 65) {
-        $_SESSION['form_data']['signup']['password']['detailed_error'][] = "Password must be at most 64 characters long, password way too long";
+        return false;
     }
+    if (strlen($pwd) > 64) {
+        $_SESSION['form_data']['signup']['password']['detailed_error'][] = "Password must be at most 64 characters long, password way too long";
+        return false;
+    }
+    return true;
 }
 function is_email_valid(string $email)
 {
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $_SESSION['form_data']['signup']['email']['error'] = "Please fill in a valid email";
         return true;
     } else {
+        $_SESSION['form_data']['signup']['email']['error'] = "Please fill in a valid email";
         return false;
     }
 }
+
 function is_email_registered(string $email)
 {
     global $conn;
@@ -128,27 +118,53 @@ function is_username_taken(string $username)
     }
 }
 
-function any_error(string $username,string $pwd,string $email)
+function any_error(string $username, string $pwd, string $email)
 {
-    // $field_error = is_filled($_SESSION['form_data']['signup']['username']['error']) || is_filled($_SESSION['form_data']['email']['error']) || is_filled($_SESSION['form_data']['password']['error']);
-    // $global_error = is_filled($_SESSION['form_data']['signup']['global_error']);
-    // $password_detailed_error = is_filled($_SESSION['form_data']['signup']['password']['detailed_error']);
-    // if ($global_error || $password_detailed_error || $field_error) {
-    //     return true;
-    // } else {
-    //     return false;
-    // }
-
-    return is_input_empty($username, $pwd, $email) || is_password_strong($pwd) || is_password_length_valid($pwd) || is_email_valid($email) || is_email_registered($email) || is_username_taken($username);
+    if (is_input_empty($username, $pwd, $email)) {
+        return true; // immediately return if inputs are empty
+    }
+    return !(is_password_strong($pwd) && is_password_length_valid($pwd) && is_email_valid($email) && !is_email_registered($email) && !is_username_taken($username));
 }
 
-function sign_up($username, $pwd, $email){
-    $hashedPassword = password_hash($pwd, PASSWORD_DEFAULT);
+function verify_session_user(string $username, string $email): bool
+{
+    if (isset($username) || isset($email)) {
+        unset($_SESSION['user_id']);
+        unset($_SESSION['username']);
+        unset($_SESSION['email']);
+        return false;
+    }
     global $conn;
-    if (add_user($conn,$username,$hashedPassword, $email)) {
-        if (!$conn) {
-            echo "is_username_taken function does not have connection to database";
-        }
+    $uuidid = get_uuid($conn, $username);
+
+    if (check_for_user_info($conn, $username, $email)) {
+        $_SESSION['user_id'] = $uuidid;
+        $_SESSION['username'] = $username;
+        $_SESSION['email'] = $email;
+        echo var_dump($_SESSION['user_id']);
+        return true;
+    } else {
+        unset($_SESSION['user_id']);
+        unset($_SESSION['username']);
+        unset($_SESSION['email']);
+        return false;
+    }
+
+}
+
+function sign_up($username, $pwd, $email)
+{
+
+    global $conn;
+    if (!$conn) {
+        echo "sign_up function does not have connection to database";
+    }
+    $create_response = create_user($conn, $username, $pwd, $email);
+    if ($create_response) {
+        verify_session_user($username, $email);
+        echo 'user got added';
+    } else {
+        echo 'user did not got added';
     }
 }
 

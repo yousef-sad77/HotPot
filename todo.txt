@@ -19,3 +19,5 @@
 - confirm password
 - logging $row in file signup.php using:
     cd .\web\MVC\module\ && php signup.php
+- clear button for forms
+- check if user table should be auto increment

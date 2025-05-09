@@ -1,3 +1,7 @@
+<?php
+require_once('./form.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,30 +36,18 @@
       </label>
     </div>
 
-    <form class="px-4 pb-2 auth-form active" id="signup-form" action="../main/signin.php" method="post">
-      <div class="mb-3">
-        <label for="username-1" class="form-label">user name</label>
-        <input type="username" name="username" class="form-control" id="username-1" placeholder="yousef">
-      </div>
-      <div class="mb-3">
-        <label for="email-in-1" class="form-label">Email address</label>
-        <input type="email" name="email" class="form-control" id="email-in-1" placeholder="email@example.com">
-      </div>
-      <div class="mb-3">
-        <label for="password-in-1" class="form-label">Password</label>
-        <input type="password" name="password" class="form-control" id="password-in-1" placeholder="new password">
-      </div>
-    </form>
-    <form class="px-4 pb-2 auth-form" id="signin-form" action="../main/signin.php" method="post">
-      <div class="mb-3">
-        <label for="email-in-2" class="form-label">Email address</label>
-        <input type="email" name="email" class="form-control" id="email-in-2" placeholder="email@example.com">
-      </div>
-      <div class="mb-3">
-        <label for="password-in-2" class="form-label">Password</label>
-        <input type="password" name="password" class="form-control" id="password-in-2" placeholder="password">
-      </div>
-    </form>
+    <?php
+    sign_up_form();
+    ?>
+
+    <?php
+    sign_in_form();
+    ?>
+
+    <?php
+    appendix_error();
+    ?>
+
     <div class="control px-4 pb-3">
       <div class="mb-3">
         <div class="form-check">
@@ -66,7 +58,7 @@
         </div>
       </div>
       <div class="d-block d-sm-flex">
-        <a type="submit" class="btn btn-primary">submit</a>
+        <button type="submit" class="btn btn-primary" form="signup-form" id="submit-btn">submit</button>
         <a class="btn btn-light mt-1 mt-sm-0 ms-sm-1 remember" id="forget-pass" href="#">Forgot password?</a>
       </div>
     </div>
