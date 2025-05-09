@@ -21,3 +21,5 @@
     cd .\web\MVC\module\ && php signup.php
 - clear button for forms
 - check if user table should be auto increment
+--------------------
+-When an admin enters a product, make it added to the database and the product will be displayed automatically.
