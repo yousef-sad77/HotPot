@@ -8,9 +8,10 @@ $allowed_pages = ['home', 'cart', 'profile']; // whitelist
 if (!in_array($page, $allowed_pages)) {
     $page = 'home'; // fallback
 }
-if (isset($_SESSION['admin_id'])){
+if (isset($_SESSION['admin_id'])) {
     $page = 'dashboard';
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

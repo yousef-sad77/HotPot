@@ -13,7 +13,7 @@ function check_if_signed_up(string $pwd, string $email): bool
     global $conn;
     // Step 1: Call the module function to check if the user exists and verify the password
     $user_data = check_user_exists($conn, $email, $pwd);
-
+    
     if ($user_data) {
         // If user data is returned, set the session data
         set_user_data_session($user_data['uuid'], $user_data['username'], $email);
@@ -33,7 +33,6 @@ function is_email_admin(string $email)
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
         // Parse the domain part of the email
         $domain = substr(strrchr($email, "@"), 1);
-
         // Check if it matches the required admin domain
         if ($domain === "admin.example.com") {
             $_SESSION['admin_id'] = get_uuid_by_email($conn, $email);

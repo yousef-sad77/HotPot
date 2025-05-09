@@ -13,14 +13,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Query failed:" . $e->getMessage());
     }
 
-    if (!check_if_signed_up( $pwd, $email)) {
+    if (!check_if_signed_up($pwd, $email)) {
         header('Location: ../views/sign.php');
-        
+
         $conn->close();
         die();
     } else {
-        if(is_email_admin( $email)){
+        if (is_email_admin($email)) {
             header('Location: ../../index.php?page=dashboard');
+            die();
         }
         header('Location: ../views/success.php');
         $conn->close();

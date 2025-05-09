@@ -101,6 +101,5 @@ function appendix_error()
     echo "<p>$global_error</p>";
   }
   echo "</div>";
-
 }
 ?>

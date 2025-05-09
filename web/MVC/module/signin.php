@@ -24,12 +24,11 @@ function check_user_exists(mysqli $conn, string $email, string $pwd): ?array
 
     // Check if user exists with the provided email
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($stored_password_hash, $username, $uuid);
+        $stmt->bind_result($storedHashedPassword, $username, $uuid);
         $stmt->fetch();
 
         // Verify the provided password matches the stored hash
-        if (password_verify($pwd, $stored_password_hash)) {
-            // If the password is correct, return the user data
+        if (password_verify($pwd, $storedHashedPassword)) {
             return ['username' => $username, 'uuid' => $uuid];
         }
     }
