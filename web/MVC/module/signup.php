@@ -60,42 +60,49 @@ function create_user(mysqli $conn, string $username, string $pwd, string $email)
     }
 }
 
-function get_uuid(mysqli $conn, string $username): ?string
+function get_uuid_by_username(mysqli $conn, string $username): ?string
 {
-    // Prepare SQL query to retrieve UUID based on the username
-    $stmt = $conn->prepare("SELECT uuid FROM users WHERE username = ?");
-
-    // Check if prepare statement was successful
-    if (!$stmt) {
-        die("Prepare failed: " . $conn->error);
-    }
+    $sql = "SELECT uuid FROM users WHERE username = ?";
+    $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $username);
-
-    // Execute the statement
     $stmt->execute();
     $stmt->bind_result($uuid);
-    $stmt->fetch();
-    $stmt->close();
-    return $uuid ? $uuid : null;
+    if ($stmt->fetch()) {
+        $stmt->close();
+        return $uuid;
+    } else {
+        $stmt->close();
+        return null;
+    }
 }
+function get_uuid_by_email(mysqli $conn, string $email): ?string
+{
+    $sql = "SELECT uuid FROM users WHERE email = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $stmt->bind_result($uuid);
+    if ($stmt->fetch()) {
+        $stmt->close();
+        return $uuid;
+    } else {
+        $stmt->close();
+        return null;
+    }
+}
+
 
 function check_for_user_info(mysqli $conn, string $username, string $email): bool
 {
-    $stmt = $conn->prepare("SELECT COUNT(*) FROM users WHERE username = ? AND uuid = ? AND email = ?");
-    if (!$stmt) {
-        die("Prepare failed: " . $conn->error);
-    }
-
-    $stmt->bind_param("sss", $username, $uuid, $email);
+    $sql = "SELECT COUNT(*) FROM users WHERE username = ? AND email = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $username, $email);
     $stmt->execute();
     $stmt->bind_result($count);
     $stmt->fetch();
     $stmt->close();
-    if ($count === 1) {
-        return true;
-    } else {
-        return false;
-    }
 
+    return $count > 0;
 }
+
 

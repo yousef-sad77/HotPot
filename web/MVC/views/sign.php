@@ -57,10 +57,13 @@ require_once('./form.php');
           </label>
         </div>
       </div>
-      <div class="d-block d-sm-flex">
+      <div class="d-block d-sm-flex align-items-center">
         <button type="submit" class="btn btn-primary" form="signup-form" id="submit-btn">submit</button>
-        <a class="btn btn-light mt-1 mt-sm-0 ms-sm-1 remember" id="forget-pass" href="#">Forgot password?</a>
+        <a href="../controller/reset_form.php" class="btn btn-secondary ms-1">Reset</a>
+
+        <a class="btn btn-light mt-1 mt-sm-0 ms-sm-1 remember" id="forget-pass" href="#" style="font-size: .9rem;">Forgot password?</a>
       </div>
+
     </div>
 
   </div>

@@ -14,7 +14,6 @@ function sign_up_form()
   $pwd_error = $_SESSION['form_data']['signup']['password']['error'] ?? '';
   $email_error = $_SESSION['form_data']['signup']['email']['error'] ?? '';
   $detailed_password = $_SESSION['form_data']['signup']['password']['detailed_error'] ?? [];
-
   echo '<form class="px-4 pb-2 auth-form active" id="signup-form" action="../main/signup.php" method="post">
         <div class="mb-3">
             <label for="username-1" class="form-label">user name</label>

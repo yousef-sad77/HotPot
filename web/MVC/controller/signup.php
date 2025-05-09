@@ -126,31 +126,7 @@ function any_error(string $username, string $pwd, string $email)
     return !(is_password_strong($pwd) && is_password_length_valid($pwd) && is_email_valid($email) && !is_email_registered($email) && !is_username_taken($username));
 }
 
-function verify_session_user(string $username, string $email): bool
-{
-    if (isset($username) || isset($email)) {
-        unset($_SESSION['user_id']);
-        unset($_SESSION['username']);
-        unset($_SESSION['email']);
-        return false;
-    }
-    global $conn;
-    $uuidid = get_uuid($conn, $username);
 
-    if (check_for_user_info($conn, $username, $email)) {
-        $_SESSION['user_id'] = $uuidid;
-        $_SESSION['username'] = $username;
-        $_SESSION['email'] = $email;
-        echo var_dump($_SESSION['user_id']);
-        return true;
-    } else {
-        unset($_SESSION['user_id']);
-        unset($_SESSION['username']);
-        unset($_SESSION['email']);
-        return false;
-    }
-
-}
 
 function sign_up($username, $pwd, $email)
 {
@@ -161,31 +137,91 @@ function sign_up($username, $pwd, $email)
     }
     $create_response = create_user($conn, $username, $pwd, $email);
     if ($create_response) {
-        verify_session_user($username, $email);
         echo 'user got added';
     } else {
         echo 'user did not got added';
     }
 }
+function verify_session_user(string $username, string $email): bool
+{
+    global $conn;
 
-// global does not get read form local
-// marking conn with global keyword does not let you later to reuse it
-// making a class the have the conn would require an import 
+    if (!$conn) {
+        echo "No DB connection.";
+        return false;
+    }
+
+    // Check if the user exists in the DB
+    if (check_for_user_info($conn, $username, $email)) {
+        $uuid = get_uuid_by_username($conn, $username);
+        set_user_data_session($uuid, $username, $email);
+        return true;
+    } else {
+        unset_user_data_session();
+        return false;
+    }
+}
+function verify_user_exist(string $pwd, string $email): bool
+{
+    global $conn;
+
+    if (!$conn) {
+        echo "No DB connection.";
+        return false;
+    }
+
+    // Check if the user exists in the DB and verify password
+    if (check_for_user_info($conn, $pwd, $email)) {
+        // Assuming get_uuid returns the user's UUID, and the username can be retrieved
+        $uuid = get_uuid_by_email($conn, $email);  // Use email to get UUID
+        $username = get_username_from_email($conn, $email);  // Assuming this function fetches the username by email
+
+        if ($username) {
+            // Set the session variables with username, email, and UUID
+            set_user_data_session($uuid, $username, $email);
+            return true;
+        }
+    }
+
+    // If the user does not exist or any condition fails, unset the session data
+    unset_user_data_session();
+    return false;
+}
 
 
-// maybe i change approach later:
-// class FormValidator {
-//     private mysqli $conn;
+function set_user_data_session($uuidid, $username, $email)
+{
+    $_SESSION['user_id'] = $uuidid;
+    $_SESSION['username'] = $username;
+    $_SESSION['email'] = $email;
+}
+function unset_user_data_session()
+{
+    unset($_SESSION['user_id']);
+    unset($_SESSION['username']);
+    unset($_SESSION['email']);
+}
 
-//     public function __construct(mysqli $conn) {
-//         $this->conn = $conn;
-//     }
 
-//     public function is_email_registered(string $email): bool {
-//         if (get_email($this->conn, $email)) {
-//             $_SESSION['form_data']['signup']['email']['error'] = "email already registered";
-//             return true;
-//         }
-//         return false;
-//     }
-// }
+
+    // global does not get read form local
+    // marking conn with global keyword does not let you later to reuse it
+    // making a class the have the conn would require an import 
+    
+    
+    // maybe i change approach later:
+    // class FormValidator {
+    //     private mysqli $conn;
+    
+    //     public function __construct(mysqli $conn) {
+    //         $this->conn = $conn;
+    //     }
+    
+    //     public function is_email_registered(string $email): bool {
+    //         if (get_email($this->conn, $email)) {
+    //             $_SESSION['form_data']['signup']['email']['error'] = "email already registered";
+    //             return true;
+    //         }
+    //         return false;
+    //     }
+    // }

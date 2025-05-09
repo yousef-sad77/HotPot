@@ -1,5 +1,5 @@
 <?php
-require_once("./MVC/controller/config_session.php");
+// require_once("./MVC/controller/config_session.php");
 
 ?>
 
@@ -35,7 +35,7 @@ require_once("./MVC/controller/config_session.php");
     <div class="collapse navbar-collapse" id="navbarScroll">
       <ul class="left-nav navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="#">
+          <a class="nav-link" aria-current="page" href="./index.php?page=home">
             <svg class="nav-icon" x="0px" y="0px" viewBox="0 0 24 24">
               <path class="home" d="M10,19v-5h4v5c0,0.5,0.4,1,1,1h3c0.5,0,1-0.5,1-1v-7h1.7c0.5,0,0.7-0.6,0.3-0.9l-8.4-7.5c-0.4-0.3-1-0.3-1.3,0
                   L3,11.1C2.6,11.4,2.8,12,3.3,12H5v7c0,0.5,0.4,1,1,1h3C9.6,20,10,19.5,10,19z" />
@@ -43,8 +43,8 @@ require_once("./MVC/controller/config_session.php");
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><svg class="nav-icon" x="0px" y="0px" viewBox="0 0 24 24">
-              <path class="kart" d="M7,18c-1.1,0-2,0.9-2,2s0.9,2,2,2s2-0.9,2-2S8.1,18,7,18z M1,3c0,0.5,0.5,1,1,1h1l3.6,7.6L5.2,14
+          <a class="nav-link" href="./index.php?page=cart"><svg class="nav-icon" x="0px" y="0px" viewBox="0 0 24 24">
+              <path class="cart" d="M7,18c-1.1,0-2,0.9-2,2s0.9,2,2,2s2-0.9,2-2S8.1,18,7,18z M1,3c0,0.5,0.5,1,1,1h1l3.6,7.6L5.2,14
   c-0.7,1.3,0.2,3,1.8,3h11c0.5,0,1-0.5,1-1s-0.5-1-1-1H7l1.1-2h7.4c0.7,0,1.4-0.4,1.7-1l3.6-6.5C21.2,4.8,20.8,4,20,4H5.2L4.5,2.6
   C4.4,2.2,4,2,3.6,2H2C1.5,2,1,2.5,1,3z M17,18c-1.1,0-2,0.9-2,2s0.9,2,2,2s2-0.9,2-2S18.1,18,17,18z" />
             </svg></a>
@@ -90,7 +90,7 @@ require_once("./MVC/controller/config_session.php");
             <hr class="dropdown-divider w-75 mx-auto" />
           </li>
           <li>
-            <a href="../../main/signout.php" class="btn btn-outline-danger btn-sm w-75 mb-2" >Logout</a>
+            <a href="./MVC/main/signout.php" class="btn btn-outline-danger btn-sm w-75 mb-2" >Logout</a>
           </li>
         </ul>
       </div>

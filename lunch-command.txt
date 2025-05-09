@@ -1,3 +1,10 @@
 php -S localhost:80; 
 
 browser-sync start --proxy "localhost:80" --files "**/*.php, **/*.css, **/*.js, **/*.html";
+
+
+
+xampp root dir:
+    # DocumentRoot "C:/xampp/htdocs"
+    DocumentRoot "E:/1000_programer/HotPot/web"
+    <Directory "E:/1000_programer/HotPot/web">

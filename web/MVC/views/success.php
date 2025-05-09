@@ -30,8 +30,8 @@
                 </svg>
             </div>
             <h4 class="card-title mb-3">Signed in Successfully!</h4>
-            <p class="card-text text-muted">Welcome back! You're now signed in to your account.</p>
-            <a href="../../index.php" class="btn btn-success rounded-pill mt-3">Go Back</a>
+            <p class="card-text text-muted">You're now signed in to your account.</p>
+            <a href="../../index.php?page=home" class="btn btn-success rounded-pill mt-3">Go Back</a>
         </div>
     </div>
 

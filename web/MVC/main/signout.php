@@ -1,4 +1,5 @@
 <?php
+require_once('../controller/config_session.php');
 session_start();
 
 // Remove user-related session variables
@@ -9,5 +10,5 @@ unset($_SESSION['username']);
 session_destroy();
 
 // Redirect to sign-in or homepage
-header("Location: ../../index.php");
+header("Location: ../../index.php?page=home");
 exit();
