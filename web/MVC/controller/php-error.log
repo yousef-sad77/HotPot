@@ -1,0 +1,29 @@
+[10-May-2025 18:40:21 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'amount' in 'field list' in E:\1000_programer\HotPot\web\MVC\controller\save_meals.php:22
+Stack trace:
+#0 E:\1000_programer\HotPot\web\MVC\controller\save_meals.php(22): mysqli->prepare('INSERT INTO pro...')
+#1 {main}
+  thrown in E:\1000_programer\HotPot\web\MVC\controller\save_meals.php on line 22
+[10-May-2025 19:53:29 Europe/Berlin] PHP Warning:  Undefined array key "username" in E:\1000_programer\HotPot\web\MVC\controller\save_users.php on line 17
+[10-May-2025 19:53:29 Europe/Berlin] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in E:\1000_programer\HotPot\web\MVC\controller\save_users.php on line 17
+[10-May-2025 19:53:29 Europe/Berlin] PHP Warning:  Undefined array key "email" in E:\1000_programer\HotPot\web\MVC\controller\save_users.php on line 18
+[10-May-2025 19:53:29 Europe/Berlin] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in E:\1000_programer\HotPot\web\MVC\controller\save_users.php on line 18
+[10-May-2025 19:53:29 Europe/Berlin] PHP Warning:  Undefined array key "role" in E:\1000_programer\HotPot\web\MVC\controller\save_users.php on line 19
+[10-May-2025 19:53:29 Europe/Berlin] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in E:\1000_programer\HotPot\web\MVC\controller\save_users.php on line 19
+[10-May-2025 19:55:10 Europe/Berlin] PHP Warning:  Undefined array key "username" in E:\1000_programer\HotPot\web\MVC\controller\save_users.php on line 17
+[10-May-2025 19:55:10 Europe/Berlin] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in E:\1000_programer\HotPot\web\MVC\controller\save_users.php on line 17
+[10-May-2025 19:55:10 Europe/Berlin] PHP Warning:  Undefined array key "email" in E:\1000_programer\HotPot\web\MVC\controller\save_users.php on line 18
+[10-May-2025 19:55:10 Europe/Berlin] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in E:\1000_programer\HotPot\web\MVC\controller\save_users.php on line 18
+[10-May-2025 19:55:10 Europe/Berlin] PHP Warning:  Undefined array key "role" in E:\1000_programer\HotPot\web\MVC\controller\save_users.php on line 19
+[10-May-2025 19:55:10 Europe/Berlin] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in E:\1000_programer\HotPot\web\MVC\controller\save_users.php on line 19
+[10-May-2025 19:55:57 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Duplicate entry 'yousef' for key 'username' in E:\1000_programer\HotPot\web\MVC\controller\save_users.php:26
+Stack trace:
+#0 E:\1000_programer\HotPot\web\MVC\controller\save_users.php(26): mysqli_stmt->execute()
+#1 {main}
+  thrown in E:\1000_programer\HotPot\web\MVC\controller\save_users.php on line 26
+  [10-May-2025 20:05:12 Europe/Berlin] PHP Warning:  Undefined array key "password" in E:\1000_programer\HotPot\web\MVC\controller\save_users.php on line 19
+[10-May-2025 20:05:12 Europe/Berlin] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in E:\1000_programer\HotPot\web\MVC\controller\save_users.php on line 19
+[10-May-2025 20:14:24 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Column count doesn't match value count at row 1 in E:\1000_programer\HotPot\web\MVC\controller\save_users.php:27
+Stack trace:
+#0 E:\1000_programer\HotPot\web\MVC\controller\save_users.php(27): mysqli->prepare('INSERT INTO use...')
+#1 {main}
+  thrown in E:\1000_programer\HotPot\web\MVC\controller\save_users.php on line 27
