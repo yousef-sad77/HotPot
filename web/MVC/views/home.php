@@ -12,7 +12,7 @@ $result = $conn->query($sql);
                 <?php while($row = $result->fetch_assoc()): ?>
                     <div class="col">
                         <div class="card border-0 w-auto">
-                            <div class="card-header bg-light">
+                            <div class="card-header bg-light border-0">
                                 <?php echo htmlspecialchars($row['product_name']); ?>
                             </div>
                             <img src="<?php echo htmlspecialchars($row['image']); ?>" class="card-img-top"
