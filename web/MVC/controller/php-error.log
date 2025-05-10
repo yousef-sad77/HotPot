@@ -1,0 +1,5 @@
+[10-May-2025 18:40:21 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'amount' in 'field list' in E:\1000_programer\HotPot\web\MVC\controller\save_meals.php:22
+Stack trace:
+#0 E:\1000_programer\HotPot\web\MVC\controller\save_meals.php(22): mysqli->prepare('INSERT INTO pro...')
+#1 {main}
+  thrown in E:\1000_programer\HotPot\web\MVC\controller\save_meals.php on line 22

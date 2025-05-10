@@ -1,6 +1,4 @@
 - nav need to be text centered on sm and xm 
-- in cart the element to the right of image should be columned
-- the cart icon should take to the cart page
 - space out the carts food name from the order counter
 - fix top rounded image in cards
 - fix the footer logo text size
