@@ -37,6 +37,8 @@ if (isset($_SESSION['admin_id'])) {
 </head>
 
 <body data-signed-in="<?php echo isset($_SESSION['user_id']) ? 'true' : 'false'; ?>">
+
+    
     <?php require_once("./MVC/views/common/nav.php"); ?>
 
     <?php require_once("./MVC/views/$page.php"); ?>
