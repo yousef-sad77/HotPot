@@ -83,8 +83,10 @@
     <!-- Users Tab -->
     <div class="tab-pane fade" id="users" role="tabpanel" aria-labelledby="users-tab">
       <div class="card shadow col">
-        <div class="card-header bg-secondary text-white">
+        <div class="card-header d-flex justify-content-between align-items-center bg-secondary text-white">
           <h5 class="mb-0">Users List</h5>
+          <!-- Add User Button -->
+          <button class="btn btn-sm btn-success" id="addUserBtn">Add User</button>
         </div>
         <div class="card-body p-0">
           <table class="table table-bordered table-hover text-center m-0 align-middle">
@@ -99,27 +101,22 @@
             </thead>
             <tbody id="userTable">
               <?php
-
-              // Include necessary files for the session and database connection
-              
               // Fetch user data from the database
               $sql = "SELECT id, username, email, role FROM users";
               $result = $conn->query($sql);
 
-              // Check if there are any users in the database
               if ($result->num_rows > 0) {
-                // Loop through each user and display in table rows
                 while ($row = $result->fetch_assoc()) {
                   echo "<tr>
-                          <td>" . htmlspecialchars($row['id']) . "</td>
-                          <td contenteditable='true' class='editable' data-field='username'>" . htmlspecialchars($row['username']) . "</td>
-                          <td contenteditable='true' class='editable' data-field='email'>" . htmlspecialchars($row['email']) . "</td>
-                          <td contenteditable='true' class='editable' data-field='role'>" . htmlspecialchars($row['role']) . "</td>
-                          <td>
-                            <button class='btn btn-sm btn-warning update-btn' data-id='" . htmlspecialchars($row['id']) . "'>Update</button>
-                            <button class='btn btn-sm btn-danger delete-btn' data-id='" . $row['id'] . "'>Delete</button>
-                          </td>
-                        </tr>";
+                      <td>" . htmlspecialchars($row['id']) . "</td>
+                      <td contenteditable='true' class='editable' data-field='username'>" . htmlspecialchars($row['username']) . "</td>
+                      <td contenteditable='true' class='editable' data-field='email'>" . htmlspecialchars($row['email']) . "</td>
+                      <td contenteditable='true' class='editable' data-field='role'>" . htmlspecialchars($row['role']) . "</td>
+                      <td>
+                        <button class='btn btn-sm btn-warning update-btn' data-id='" . htmlspecialchars($row['id']) . "'>Update</button>
+                        <button class='btn btn-sm btn-danger delete-btn' data-id='" . $row['id'] . "'>Delete</button>
+                      </td>
+                    </tr>";
                 }
               } else {
                 echo "<tr><td colspan='5'>No users found</td></tr>";
@@ -130,6 +127,7 @@
         </div>
       </div>
     </div>
+
     <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1100">
       <div id="liveToast" class="toast align-items-center text-white bg-success border-0" role="alert"
         aria-live="assertive" aria-atomic="true">
@@ -142,5 +140,44 @@
         </div>
       </div>
     </div>
+
   </div>
+  <!-- Modal for Delete Confirmation -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete this item?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Password Modal -->
+  <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="passwordModalLabel">Enter Password</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="password" class="form-control" id="passwordInput" placeholder="Password">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="confirmPasswordBtn">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </div>

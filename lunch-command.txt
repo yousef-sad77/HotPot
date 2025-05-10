@@ -1,10 +1,19 @@
+// from xampp or:
 php -S localhost:80; 
 
+// optional:
 browser-sync start --proxy "localhost:80" --files "**/*.php, **/*.css, **/*.js, **/*.html";
 
+// setup steps:
+    // 1- sql:
+    // if your sql service gives error in xampp run this services_fix.ps1
+    // go to sql/db.sql to set the database 
 
 
-xampp root dir:
-    # DocumentRoot "C:/xampp/htdocs"
-    DocumentRoot "E:/1000_programer/HotPot/web"
-    <Directory "E:/1000_programer/HotPot/web">
+    // 2- php server:
+    // go to were you download the HotPot project 
+    // enter the HotPot folder
+    // copy the path 
+    // past it to this var in index.php
+    $your_path = "E:/1000_programer/HotPot";
+
