@@ -1,5 +1,3 @@
-CREATE DATABASE hotpot_db;
-
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE
@@ -56,8 +54,6 @@ CREATE TABLE products
 );
 
 
-
-    --
     INSERT INTO products
         (uuid, product_name, price, description, long_description, image, amount)
     VALUES
@@ -109,3 +105,4 @@ CREATE TABLE products
     VALUES(UUID(), 'French Fries', 2.99, 'Crispy golden potato fries with a side of ketchup.',
             'Enjoy our golden French Fries—crispy on the outside, fluffy on the inside. Served hot with a side of ketchup or your choice of dipping sauce, they’re the ideal side or snack to satisfy your craving for something salty and crunchy.',
             '/assets/images/shawarma_wrap.jpg');
+
