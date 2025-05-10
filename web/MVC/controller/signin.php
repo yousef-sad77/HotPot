@@ -34,7 +34,7 @@ function is_email_admin(string $email)
         // Parse the domain part of the email
         $domain = substr(strrchr($email, "@"), 1);
         // Check if it matches the required admin domain
-        if ($domain === "admin.example.com") {
+        if ($domain === "admin.hotpot.com") {
             $_SESSION['admin_id'] = get_uuid_by_email($conn, $email);
             return true; // It's a valid admin email
         } else {

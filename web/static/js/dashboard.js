@@ -104,6 +104,4 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
   });
-
-
 });

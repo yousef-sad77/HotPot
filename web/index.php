@@ -1,9 +1,12 @@
 <?php
+$your_path = "E:/1000_programer/HotPot"; // change this to your path;
+$_SERVER['DOCUMENT_ROOT'] = "$your_path/web"; // to ensure path sync (your root path should end with web)
+
 require_once("./MVC/controller/config_session.php");
 
 $page = $_GET['page'] ?? 'home'; // default to dashboard
 
-$allowed_pages = ['home', 'cart', 'profile']; // whitelist
+$allowed_pages = ['home', 'cart', 'product']; // whitelist
 
 if (!in_array($page, $allowed_pages)) {
     $page = 'home'; // fallback
@@ -37,7 +40,6 @@ if (isset($_SESSION['admin_id'])) {
 </head>
 
 <body data-signed-in="<?php echo isset($_SESSION['user_id']) ? 'true' : 'false'; ?>">
-
     
     <?php require_once("./MVC/views/common/nav.php"); ?>
 
