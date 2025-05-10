@@ -4,16 +4,19 @@ $_SERVER['DOCUMENT_ROOT'] = "$your_path/web"; // to ensure path sync (your root 
 
 require_once("./MVC/controller/config_session.php");
 
-$page = $_GET['page'] ?? 'home'; // default to dashboard
+$page = $_GET['page'] ?? 'home'; // default to home
 
-$allowed_pages = ['home', 'cart', 'product']; // whitelist
+$allowed_pages = ['home', 'cart', 'product', 'dashboard']; // whitelist
 
 if (!in_array($page, $allowed_pages)) {
     $page = 'home'; // fallback
 }
-if (isset($_SESSION['admin_id'])) {
-    $page = 'dashboard';
+
+if ($page === 'dashboard' && !isset($_SESSION['admin_id'])) {
+    header("Location: index.php?page=home");
+    exit;
 }
+
 
 ?>
 <!DOCTYPE html>
@@ -40,7 +43,7 @@ if (isset($_SESSION['admin_id'])) {
 </head>
 
 <body data-signed-in="<?php echo isset($_SESSION['user_id']) ? 'true' : 'false'; ?>">
-    
+
     <?php require_once("./MVC/views/common/nav.php"); ?>
 
     <?php require_once("./MVC/views/$page.php"); ?>

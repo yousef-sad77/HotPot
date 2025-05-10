@@ -105,5 +105,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
         window.addEventListener('resize', updateBreakpoint);
         updateBreakpoint();
-    })()
+    })
 });
