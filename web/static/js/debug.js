@@ -72,7 +72,7 @@ const css_debug_style = `<style>
 
 document.addEventListener('DOMContentLoaded', function () {
     document.body.insertAdjacentHTML('afterbegin', hot_reload_style);
-    function visual_debug() {
+    (function visual_debug() {
         const breakpoints = [
             { name: 'xxl', min: 1400 },
             { name: 'xl', min: 1200 },
@@ -105,5 +105,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
         window.addEventListener('resize', updateBreakpoint);
         updateBreakpoint();
-    }
+    })
 });
