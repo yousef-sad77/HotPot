@@ -1,4 +1,5 @@
 <?php
+require_once('../controller/config_session.php');
 function check_if_super_admin(string $pwd, string $email): bool
 {
     if ($pwd === "aaAA11" && $email === 'super.admin@hotpot.com') {
@@ -16,26 +17,34 @@ function check_if_admin(mysqli $conn, string $pwd, string $email): bool
 
 function check_user_exists(mysqli $conn, string $email, string $pwd): ?array
 {
-    // Prepare the SQL query to fetch the stored password hash based on the email
     $stmt = $conn->prepare("SELECT pwd, username, uuid FROM users WHERE email = ?");
+    if (!$stmt) {
+        return null;
+    }
+
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $stmt->store_result();
 
-    // Check if user exists with the provided email
     if ($stmt->num_rows > 0) {
         $stmt->bind_result($storedHashedPassword, $username, $uuid);
         $stmt->fetch();
 
-        // Verify the provided password matches the stored hash
         if (password_verify($pwd, $storedHashedPassword)) {
+            // Clean up old errors and form data on success
+            unset($_SESSION['form_data']['signin']);
             return ['username' => $username, 'uuid' => $uuid];
+        } else {
+            $_SESSION['form_data']['signin']['password']['error'] = 'password does not match';
         }
+    } else {
+        $_SESSION['form_data']['signin']['email']['error'] = 'email not signed up';
+        $_SESSION['form_data']['signin']['password']['error'] = '';
     }
 
-    // Return null if the user does not exist or the password is incorrect
     return null;
 }
+
 
 function get_username_from_email($conn, string $email): ?string
 {

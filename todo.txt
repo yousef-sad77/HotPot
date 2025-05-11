@@ -1,7 +1,5 @@
 - nav need to be text centered on sm and xm 
 - space out the carts food name from the order counter
-- fix top rounded image in cards
-- fix the footer logo text size
 - check on tab indexing
 - remove comments
 - footer should be pushed down so the user have to scroll 100vh + the whole footer height for all pages

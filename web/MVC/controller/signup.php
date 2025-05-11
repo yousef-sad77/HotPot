@@ -25,6 +25,7 @@ function is_input_empty(string $username, string $pwd, string $email)
         if (is_empty($email)) {
             $_SESSION['form_data']['signup']['email']['error'] = "Email is required";
         }
+
         if (is_empty($pwd)) {
             $_SESSION['form_data']['signup']['password']['error'] = "Password is required";
         }
@@ -44,24 +45,24 @@ function is_input_empty(string $username, string $pwd, string $email)
     }
 }
 
-function is_password_strong(string $pwd)
+function is_password_strong(string $pwd): bool
 {
     $is_strong = true;
-
+    unset($_SESSION['form_data']['signup']['password']['detailed_error']);
     // Check if the password has at least 3 uppercase letters
-    if (preg_match_all('/[A-Z]/', $pwd) < 2) {
+    if (preg_match_all('/[A-Z]/', $pwd) < 3) {
         $_SESSION['form_data']['signup']['password']['detailed_error'][] = "at least 3 uppercase letters required";
         $is_strong = false;
     }
 
     // Check if the password has at least 3 lowercase letters
-    if (preg_match_all('/[a-z]/', $pwd) < 2) {
+    if (preg_match_all('/[a-z]/', $pwd) < 3) {
         $_SESSION['form_data']['signup']['password']['detailed_error'][] = "at least 3 lowercase letters required";
         $is_strong = false;
     }
 
     // Check if the password has at least 3 numbers
-    if (preg_match_all('/[0-9]/', $pwd) < 2) {
+    if (preg_match_all('/[0-9]/', $pwd) < 3) {
         $_SESSION['form_data']['signup']['password']['detailed_error'][] = "at least 3 numbers required";
         $is_strong = false;
     }
@@ -121,7 +122,7 @@ function is_username_taken(string $username)
 function any_error(string $username, string $pwd, string $email)
 {
     if (is_input_empty($username, $pwd, $email)) {
-        return true; // immediately return if inputs are empty
+        return true;
     }
     return !(is_password_strong($pwd) && is_password_length_valid($pwd) && is_email_valid($email) && !is_email_registered($email) && !is_username_taken($username));
 }
@@ -204,24 +205,24 @@ function unset_user_data_session()
 
 
 
-    // global does not get read form local
-    // marking conn with global keyword does not let you later to reuse it
-    // making a class the have the conn would require an import 
-    
-    
-    // maybe i change approach later:
-    // class FormValidator {
-    //     private mysqli $conn;
-    
-    //     public function __construct(mysqli $conn) {
-    //         $this->conn = $conn;
-    //     }
-    
-    //     public function is_email_registered(string $email): bool {
-    //         if (get_email($this->conn, $email)) {
-    //             $_SESSION['form_data']['signup']['email']['error'] = "email already registered";
-    //             return true;
-    //         }
-    //         return false;
-    //     }
-    // }
+// global does not get read form local
+// marking conn with global keyword does not let you later to reuse it
+// making a class the have the conn would require an import 
+
+
+// maybe i change approach later:
+// class FormValidator {
+//     private mysqli $conn;
+
+//     public function __construct(mysqli $conn) {
+//         $this->conn = $conn;
+//     }
+
+//     public function is_email_registered(string $email): bool {
+//         if (get_email($this->conn, $email)) {
+//             $_SESSION['form_data']['signup']['email']['error'] = "email already registered";
+//             return true;
+//         }
+//         return false;
+//     }
+// }

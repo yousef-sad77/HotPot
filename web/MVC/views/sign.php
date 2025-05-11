@@ -22,7 +22,6 @@ require_once('./form.php');
 <body>
 
   <div class="auth-container bg-body-tertiary">
-
     <div class="anti-wiggle d-flex justify-content-center">
       <h2 class="me-1">Sign</h2>
       <label class="switch">
@@ -61,7 +60,7 @@ require_once('./form.php');
         <button type="submit" class="btn btn-primary" form="signup-form" id="submit-btn">submit</button>
         <a href="../controller/reset_form.php" class="btn btn-secondary ms-1">Reset</a>
 
-        <a class="btn btn-light mt-1 mt-sm-0 ms-sm-1 remember" id="forget-pass" href="#" style="font-size: .9rem;">Forgot password?</a>
+        <a class="btn btn-light mt-1 mt-sm-0 ms-sm-1 remember" id="forget-pass" href="#">Forgot password?</a>
       </div>
 
     </div>

@@ -1,6 +1,6 @@
 <?php
 $your_path = "E:/1000_programer/HotPot"; // change this to your path;
-$_SERVER['DOCUMENT_ROOT'] = "$your_path/web"; // to ensure path sync (your root path should end with web)
+$_SERVER['DOCUMENT_ROOT'] = "$your_path/web"; // to ensure path sync on other machines (your root path should end with web)
 
 require_once("./MVC/controller/config_session.php");
 

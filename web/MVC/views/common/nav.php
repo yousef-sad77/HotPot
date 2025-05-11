@@ -63,7 +63,7 @@
 
       </ul>
     </div>
-    <div class="d-flex gap-md-2 align-items-center">
+    <div class="profile d-flex gap-md-2 align-items-center">
       <div id="sign">
         <a class="btn btn-outline-primary fw-bold text-black border-0" href="./MVC/views/sign.php" type="submit">
           sign in/up

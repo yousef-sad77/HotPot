@@ -15,7 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (any_error($username, $pwd, $email)) {
-        header('Location: ../views/sign.php');
+
+        header('Location: ../views/sign.php?form=signup');
         $conn->close();
         die();
     } else {

@@ -37,8 +37,12 @@ nav {
 [data-bs-theme="dark"] svg.nav-icon {
   fill: #e3e3e3;
 }
-
-
+nav .navbar-toggler:focus{
+  box-shadow: none !important;
+}
+.navbar-toggler.collapsed ~ .profile {
+  margin-left: 1rem;
+}
 @media (max-width: 768px) {
   .logo-text {
     font-size: 1.6rem;

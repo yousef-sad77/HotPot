@@ -31,7 +31,7 @@
       <!-- Media -->
       <div class="col-sm-6 col-md-3 mb-4">
         <h2 class="fw-bold">Media</h2>
-        <ul class="list-unstyled d-flex flex-column flex-wrap">
+        <ul class="list-unstyled d-flex flex-column flex-wrap mx-auto mx-sm-0">
           <li class=" mb-1"><a href="#" class="media-icon text-decoration-none text-reset">
               <svg class="media-icon x="0px" y="0px" viewBox="0 0 24 24">
                 <path d="M20.2,0.5H3.8C2,0.5,0.5,2,0.5,3.8v16.4c0,1.8,1.5,3.3,3.3,3.3h16.4c1.8,0,3.3-1.5,3.3-3.3V3.8C23.5,2,22,0.5,20.2,0.5z
@@ -79,7 +79,7 @@
       <!-- Services -->
       <div class="col-sm-6 col-md-3 mb-4">
         <h2 class="fw-bold">Service</h2>
-        <ul class="list-unstyled">
+        <ul class="list-unstyled w-auto mx-auto">
           <li><a href="#" class="text-decoration-none text-reset">Institutional</a></li>
           <li><a href="#" class="text-decoration-none text-reset">Diver Partners</a></li>
           <li><a href="#" class="text-decoration-none text-reset">Pricing</a></li>
@@ -90,7 +90,7 @@
       <!-- Company -->
       <div class="col-sm-6 col-md-3 mb-4">
         <h2 class="fw-bold">Company</h2>
-        <ul class="list-unstyled">
+        <ul class="list-unstyled w-auto mx-auto">
           <li><a href="#" class="text-decoration-none text-reset">About Us</a></li>
           <li><a href="#" class="text-decoration-none text-reset">Career</a></li>
           <li><a href="#" class="text-decoration-none text-reset">Blogs</a></li>

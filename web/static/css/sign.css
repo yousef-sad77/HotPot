@@ -17,7 +17,7 @@ body {
   border-radius: 20px;
   padding: 2rem;
   width: 100%;
-  max-width: 400px;
+  max-width: 410px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -28,11 +28,11 @@ body {
 .auth-form {
   display: none;
 }
-.remember{
+.remember {
   visibility: hidden;
   opacity: 0;
 }
-.auth-form.active{
+.auth-form.active {
   display: block;
 }
 .remember.active {
@@ -49,6 +49,6 @@ input:invalid:focus {
   border-color: var(--invalid-color);
 }
 
-.anti-wiggle{
-    height: 5rem;
+.anti-wiggle {
+  height: 4rem;
 }

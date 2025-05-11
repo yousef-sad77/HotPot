@@ -7,17 +7,30 @@ const submitBtn = document.getElementById('submit-btn');
 let currentForm = signupForm;
 submitBtn.setAttribute('form', currentForm.id); // Set initial form attribute
 
-toggleBtn.addEventListener('click', () => {
-  forgetPass.classList.toggle('active');
-  signinForm.classList.toggle('active');
-  signupForm.classList.toggle('active');
+// Check URL param on load to toggle form
+const params = new URLSearchParams(window.location.search);
+const formParam = params.get('form');
 
-  currentForm = signinForm.classList.contains('active') ? signinForm : signupForm;
+if (formParam === 'signin') {
+  toggleBtn.checked = true; // Ensure checkbox is checked for signin
+  toggleForms(true); // Manually sync UI for signin
+} else if (formParam === 'signup') {
+  toggleBtn.checked = false; // Ensure checkbox is unchecked for signup
+  toggleForms(false); // Manually sync UI for signup
+}
 
-  // Update form attribute on submit button
+function toggleForms(isSignin) {
+  forgetPass.classList.toggle('active', isSignin);
+  signinForm.classList.toggle('active', isSignin);
+  signupForm.classList.toggle('active', !isSignin);
+
+  currentForm = isSignin ? signinForm : signupForm;
   submitBtn.setAttribute('form', currentForm.id);
-});
+}
 
+toggleBtn.addEventListener('click', () => {
+  toggleForms(toggleBtn.checked); // Use checkbox state to determine which form to show
+});
 
 const resetBtn = document.getElementById('reset-btn');
 

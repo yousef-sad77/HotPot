@@ -14,8 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (!check_if_signed_up($pwd, $email)) {
-        header('Location: ../views/sign.php');
-
+        header('Location: ../views/sign.php?form=signin');
         $conn->close();
         die();
     } else {
